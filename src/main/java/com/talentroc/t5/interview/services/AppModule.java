@@ -1,8 +1,6 @@
 package com.talentroc.t5.interview.services;
 
-import java.io.IOException;
-
-import org.apache.tapestry5.*;
+import org.apache.tapestry5.SymbolConstants;
 import org.apache.tapestry5.ioc.MappedConfiguration;
 import org.apache.tapestry5.ioc.OrderedConfiguration;
 import org.apache.tapestry5.ioc.ServiceBinder;
@@ -13,14 +11,14 @@ import org.apache.tapestry5.services.RequestHandler;
 import org.apache.tapestry5.services.Response;
 import org.slf4j.Logger;
 
+import java.io.IOException;
+
 /**
  * This module is automatically included as part of the Tapestry IoC Registry, it's a good place to
  * configure and extend Tapestry, or to place your own service definitions.
  */
-public class AppModule
-{
-    public static void bind(ServiceBinder binder)
-    {
+public class AppModule {
+    public static void bind(ServiceBinder binder) {
         // binder.bind(MyServiceInterface.class, MyServiceImpl.class);
 
         // Make bind() calls on the binder object to define most IoC services.
@@ -30,26 +28,15 @@ public class AppModule
     }
 
     public static void contributeFactoryDefaults(
-            MappedConfiguration<String, Object> configuration)
-    {
-        // The application version number is incorprated into URLs for some
-        // assets. Web browsers will cache assets because of the far future expires
-        // header. If existing assets are changed, the version number should also
-        // change, to force the browser to download new versions. This overrides Tapesty's default
-        // (a random hexadecimal number), but may be further overriden by DevelopmentModule or
-        // QaModule.
-        configuration.override(SymbolConstants.APPLICATION_VERSION, "1.0-SNAPSHOT");
+            MappedConfiguration<String, Object> configuration) {
     }
 
     public static void contributeApplicationDefaults(
-            MappedConfiguration<String, Object> configuration)
-    {
+            MappedConfiguration<String, Object> configuration) {
         // Contributions to ApplicationDefaults will override any contributions to
-        // FactoryDefaults (with the same key). Here we're restricting the supported
-        // locales to just "en" (English). As you add localised message catalogs and other assets,
-        // you can extend this list of locales (it's a comma separated series of locale names;
-        // the first locale name is the default when there's no reasonable match).
+        // FactoryDefaults (with the same key).
         configuration.add(SymbolConstants.SUPPORTED_LOCALES, "en");
+        configuration.add(SymbolConstants.JAVASCRIPT_INFRASTRUCTURE_PROVIDER, "jquery");
     }
 
 
@@ -71,24 +58,19 @@ public class AppModule
      * a service named "RequestFilter" we use an explicit service id that we can reference
      * inside the contribution method.
      */
-    public RequestFilter buildTimingFilter(final Logger log)
-    {
-        return new RequestFilter()
-        {
+    public RequestFilter buildTimingFilter(final Logger log) {
+        return new RequestFilter() {
             public boolean service(Request request, Response response, RequestHandler handler)
-                    throws IOException
-            {
+                    throws IOException {
                 long startTime = System.currentTimeMillis();
 
-                try
-                {
+                try {
                     // The responsibility of a filter is to invoke the corresponding method
                     // in the handler. When you chain multiple filters together, each filter
                     // received a handler that is a bridge to the next filter.
 
                     return handler.service(request, response);
-                } finally
-                {
+                } finally {
                     long elapsed = System.currentTimeMillis() - startTime;
 
                     log.info(String.format("Request time: %d ms", elapsed));
@@ -106,8 +88,7 @@ public class AppModule
      */
     public void contributeRequestHandler(OrderedConfiguration<RequestFilter> configuration,
                                          @Local
-                                         RequestFilter filter)
-    {
+                                         RequestFilter filter) {
         // Each contribution to an ordered configuration has a name, When necessary, you may
         // set constraints to precisely control the invocation order of the contributed filter
         // within the pipeline.
