@@ -9,6 +9,8 @@ exercice. Pensez à préciser dans le message de commit pour quel exercice il es
 
 Si vous avez une remarque ou une question, contactez moi directement.
 
+Vous pouvez évidemment en faire plus que le minimum demandé ici.
+
 ## Ressources utiles
 
 * [Tapestry getting started](http://tapestry.apache.org/getting-started.html)
