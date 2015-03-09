@@ -4,7 +4,7 @@
       xmlns:p="tapestry:parameter">
 <head>
     <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
-    <title>${title}</title>
+    <title>${title} | Talentroc interview test</title>
 </head>
 <body>
 <!-- start header -->
@@ -23,7 +23,7 @@
         <div class="collapse navbar-collapse" id="layout-navbar-collapse">
             <ul class="nav navbar-nav">
                 <li t:type="loop" source="pageNames" value="pageName" class="prop:classForPageName">
-                    <t:pagelink page="prop:pageName">${pageName}</t:pagelink>
+                    <t:pagelink page="prop:pageName">${pageTitle}</t:pagelink>
                 </li>
             </ul>
         </div>
