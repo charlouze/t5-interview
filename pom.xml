@@ -59,7 +59,6 @@
             <version>${slf4j-version}</version>
         </dependency>
 
-
         <!-- Uncomment this to add support for file uploads:
 
          <dependency>

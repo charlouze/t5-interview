@@ -34,6 +34,7 @@
 
 <div class="container">
     <t:alerts/>
+    <h1>${title}</h1>
     <t:body/>
 </div>
 <!-- end page -->
