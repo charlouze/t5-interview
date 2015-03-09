@@ -1,10 +1,15 @@
 package com.talentroc.t5.interview.services;
 
+import com.talentroc.t5.interview.entities.Contact;
+import com.talentroc.t5.interview.utils.BusinessException;
 import org.apache.tapestry5.SymbolConstants;
 import org.apache.tapestry5.ioc.MappedConfiguration;
+import org.apache.tapestry5.ioc.MethodAdviceReceiver;
 import org.apache.tapestry5.ioc.OrderedConfiguration;
 import org.apache.tapestry5.ioc.ServiceBinder;
 import org.apache.tapestry5.ioc.annotations.Local;
+import org.apache.tapestry5.ioc.annotations.Match;
+import org.apache.tapestry5.jpa.JpaTransactionAdvisor;
 import org.apache.tapestry5.services.Request;
 import org.apache.tapestry5.services.RequestFilter;
 import org.apache.tapestry5.services.RequestHandler;
@@ -25,6 +30,14 @@ public class AppModule {
         // Use service builder methods (example below) when the implementation
         // is provided inline, or requires more initialization than simply
         // invoking the constructor.
+        binder.bind(ContactManager.class, ContactManagerImpl.class);
+    }
+
+    @Match("*Manager")
+    public static void adviseTransactionally(
+            JpaTransactionAdvisor advisor,
+            MethodAdviceReceiver receiver) {
+        advisor.addTransactionCommitAdvice(receiver);
     }
 
     public static void contributeFactoryDefaults(
@@ -94,5 +107,21 @@ public class AppModule {
         // within the pipeline.
 
         configuration.add("Timing", filter);
+    }
+
+    public static void contributeRegistryStartup(OrderedConfiguration<Runnable> configuration,
+                                                 final ContactManager contactManager, final Logger logger) {
+        configuration.add("default-contacts", new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    contactManager.create(new Contact("Pierre", "Dupond", "0240404040"));
+                    contactManager.create(new Contact("Paul", "Dupont", "0290909090"));
+                    contactManager.create(new Contact("Jacques", "Duponh", "0260606060"));
+                } catch (BusinessException e) {
+                    logger.error("unable to create default contacts", e);
+                }
+            }
+        });
     }
 }

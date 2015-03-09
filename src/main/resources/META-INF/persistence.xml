@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence xmlns="http://java.sun.com/xml/ns/persistence" version="1.0">
+    <persistence-unit name="talenTrocInterviewPU" transaction-type="RESOURCE_LOCAL">
+        <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+        <properties>
+            <property name="hibernate.connection.driver_class" value="org.hsqldb.jdbcDriver" />
+            <property name="hibernate.connection.url" value="jdbc:hsqldb:mem:talentroc" />
+            <property name="hibernate.connection.username" value="talentroc" />
+            <property name="hibernate.connection.password" value="talentroc" />
+            <property name="hibernate.dialect" value="org.hibernate.dialect.HSQLDialect" />
+            <property name="hibernate.hbm2ddl.auto" value="create-drop" />
+
+            <property name="hibernate.connection.provider_class"
+                      value="org.hibernate.connection.C3P0ConnectionProvider" />
+            <property name="hibernate.c3p0.max_size" value="2" />
+            <property name="hibernate.c3p0.min_size" value="0" />
+            <property name="hibernate.c3p0.acquire_increment" value="1" />
+            <property name="hibernate.c3p0.idle_test_period" value="300" />
+            <property name="hibernate.c3p0.max_statements" value="0" />
+            <property name="hibernate.c3p0.timeout" value="100" />
+
+            <property name="hibernate.jdbc.batch_size" value="10" />
+            <property name="hibernate.jdbc.batch_versioned_data" value="true" />
+            <property name="hibernate.use_sql_comments" value="true" />
+            <property name="hibernate.show_sql" value="false" />
+            <property name="hibernate.query.substitutions" value="true 1, false 0" />
+            <property name="hibernate.jdbc.connection.release_mode" value="auto" />
+            <property name="hibernate.generate_statistics" value="false" />
+
+            <property name="hibernate.ejb.naming_strategy" value="org.hibernate.cfg.ImprovedNamingStrategy" />
+
+            <property name="javax.persistence.validation.mode" value="auto" />
+        </properties>
+    </persistence-unit>
+</persistence>
