@@ -1,9 +1,9 @@
 package com.talentroc.t5.interview.services;
 
 import com.talentroc.t5.interview.entities.Contact;
+import com.talentroc.t5.interview.entities.Ville;
 import com.talentroc.t5.interview.utils.BusinessException;
 
-import java.util.Collection;
 import java.util.List;
 
 public interface ContactManager {
@@ -11,18 +11,15 @@ public interface ContactManager {
     /**
      * Validates a contact entry.
      *
-     * @param contact
-     *         contact to validate
-     * @throws com.talentroc.t5.interview.utils.BusinessException
-     *         on validation error.
+     * @param contact contact to validate
+     * @throws com.talentroc.t5.interview.utils.BusinessException on validation error.
      */
     void validate(Contact contact) throws BusinessException;
 
     /**
      * Creates a contact entry
      *
-     * @param contact
-     *         contact to create
+     * @param contact contact to create
      */
     void create(Contact contact) throws BusinessException;
 
@@ -30,8 +27,7 @@ public interface ContactManager {
     /**
      * Update a contact entry
      *
-     * @param contact
-     *         contact to update
+     * @param contact contact to update
      */
     void update(Contact contact) throws BusinessException;
 
@@ -39,8 +35,7 @@ public interface ContactManager {
     /**
      * Deletes a contact entry
      *
-     * @param contact
-     *         contact to delete
+     * @param contact contact to delete
      */
     void delete(Contact contact) throws BusinessException;
 
@@ -56,9 +51,10 @@ public interface ContactManager {
     /**
      * Retrieves a contact by its id
      *
-     * @param id
-     *         id of the contact to retrieve
+     * @param id id of the contact to retrieve
      * @return the contact corresponding to the id
      */
     Contact retrieveById(Long id);
+
+    List<Contact> findByVille(Ville ville);
 }

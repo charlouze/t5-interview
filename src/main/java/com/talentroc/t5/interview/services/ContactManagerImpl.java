@@ -1,6 +1,7 @@
 package com.talentroc.t5.interview.services;
 
 import com.talentroc.t5.interview.entities.Contact;
+import com.talentroc.t5.interview.entities.Ville;
 import com.talentroc.t5.interview.utils.BusinessException;
 import org.apache.tapestry5.jpa.annotations.CommitAfter;
 
@@ -56,5 +57,10 @@ public class ContactManagerImpl implements ContactManager {
     @Override
     public Contact retrieveById(final Long id) {
         return entityManager.find(Contact.class, id);
+    }
+
+    @Override
+    public List<Contact> findByVille(final Ville ville) {
+        return null;
     }
 }

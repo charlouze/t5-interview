@@ -14,6 +14,9 @@ import java.util.Objects;
 @NamedQueries({@NamedQuery(name = Contact.RETRIEVE_ALL, query = "SELECT c FROM Contact c")})
 public class Contact implements Serializable {
     public static final java.lang.String RETRIEVE_ALL = "Conctact.retrieveALl";
+    public static final java.lang.String FIND_BY_VILLE = "Contact.findByVille";
+
+    public static final java.lang.String VILLE = "ville";
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

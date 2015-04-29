@@ -1,6 +1,7 @@
 package com.talentroc.t5.interview.services;
 
 import com.talentroc.t5.interview.entities.Contact;
+import com.talentroc.t5.interview.entities.Ville;
 import com.talentroc.t5.interview.utils.BusinessException;
 import org.apache.tapestry5.SymbolConstants;
 import org.apache.tapestry5.ioc.MappedConfiguration;
@@ -31,6 +32,7 @@ public class AppModule {
         // is provided inline, or requires more initialization than simply
         // invoking the constructor.
         binder.bind(ContactManager.class, ContactManagerImpl.class);
+        binder.bind(VilleManager.class, VilleManagerImpl.class);
     }
 
     @Match("*Manager")
@@ -110,11 +112,13 @@ public class AppModule {
     }
 
     public static void contributeRegistryStartup(OrderedConfiguration<Runnable> configuration,
-                                                 final ContactManager contactManager, final Logger logger) {
+                                                 final ContactManager contactManager, final VilleManager villeManager, final Logger logger) {
         configuration.add("default-contacts", new Runnable() {
             @Override
             public void run() {
                 try {
+                    Ville nantes = villeManager.create(new Ville("Nantes"));
+                    Ville lille = villeManager.create(new Ville("Lille"));
                     contactManager.create(new Contact("Pierre", "Dupond", "0240404040"));
                     contactManager.create(new Contact("Paul", "Dupont", "0290909090"));
                     contactManager.create(new Contact("Jacques", "Duponh", "0260606060"));
