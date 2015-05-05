@@ -2,8 +2,6 @@
 
 Ceci est le test pour les entretiens chez Talentroc.
 
-Afin de réaliser ce test vous devez vous créer un compte github et "fork" ce dépot.
-
 A minima, chaque exercice doit être ponctué d'un commit. Il est néanmoins possible de faire plusieurs commit pour un
 exercice. Pensez à préciser dans le message de commit pour quel exercice il est (par exemple : "Ex1 - bla bla bla")
 
