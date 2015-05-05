@@ -73,7 +73,7 @@ __Travail : Ajouter les boutons supprimer et éditer dans le tableau pour chaque
 
 La page ContactIndex permet d'afficher la liste des contacts avec les différentes informations les concernants.
 
-__Travail 1: Ajouter une propriété ville à un contact et modifié le tableau afin de l'afficher.__
+__Travail 1: Ajouter une propriété ville à un contact et modifié le tableau afin de l'afficher.__ (Utiliser l'annotation @ManyToOne de JPA)
 
 Lorsque le nombre de contact devient important, il peut être intéressant de permettre à l'utilisateur de trier les contacts en fonction d'une propriété. (Par exemple sa ville)
 
